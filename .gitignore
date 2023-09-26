@@ -7,5 +7,7 @@ chorearNota.py
 prueba.py
 #
 relevamientos_anteriores
-
+#
 __pycache__
+#
+.gitignore
