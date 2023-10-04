@@ -1,7 +1,7 @@
     
 from dependencias.Notas import Nota, ListaNotas
 from datetime import date, datetime
-from os import rename as renombrarArchivo, replace as reemplazarArchivo
+from os import renames as renombrarArchivo, replace as reemplazarArchivo
 from os.path import isfile as esArchivo
 from typing import overload, Union
 
@@ -130,9 +130,9 @@ class Informe:
         if EXISTE_INFORME_HOY:
             try:
                 renombrarArchivo(f"./{RUTA_INFORME_HOY}",f"./relevamientos_anteriores/{RUTA_INFORME_HOY}")
-            except (FileExistsError, FileNotFoundError):
+            except FileExistsError:
                 reemplazarArchivo(f"./{RUTA_INFORME_HOY}",f"./relevamientos_anteriores/{RUTA_INFORME_HOY}")   
-        
+
         nota : Nota
         with open(RUTA_INFORME_HOY,mode="w",encoding="utf-8") as txt:
             txt.write(f"*INFORME* | _{self.fecha}_ - {datetime.today().strftime('%H:%M')}\n")
