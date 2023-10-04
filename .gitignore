@@ -11,3 +11,5 @@ relevamientos_anteriores
 __pycache__
 #
 .gitignore
+#
+Relevamiento_*

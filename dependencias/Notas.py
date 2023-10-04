@@ -43,7 +43,7 @@ class Nota():
         return sonLaMismaNota or sonNotasCasiIdenticas
     
     def __repr__(self):
-        return f"{self.titulo}\n{self.medio} | {self.fecha}\n{self.url}\n Etiquetas: {self.etiquetas}\n{self.volanta}\n"
+        return f"<Objeto Nota | id = {id(self)} url = {self.url}>\n"
     
     def __str__(self):
         return f"{self.titulo}\n{self.medio} | {self.fecha}\n{self.url}\n Etiquetas: {self.etiquetas}\n{self.volanta}\n\n"
