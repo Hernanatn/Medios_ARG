@@ -10,7 +10,7 @@ setup(
     url= 'https://github.com/Hernanatn/Medios_ARG',
     download_url     =  'https://github.com/Hernanatn/Goog_API/raw/main/dist/Goog_API-0.22.tar.gz',
     packages=['Medios_ARG'],
-    install_requires=[
+    install_requires=[ 
         'bs4',
         'requests',
     ],
