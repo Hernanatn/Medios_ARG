@@ -3,7 +3,9 @@ from dependencias.Notas import Nota, ListaNotas
 from datetime import date, datetime
 from os import renames as renombrarArchivo, replace as reemplazarArchivo
 from os.path import isfile as esArchivo
-from typing import overload, Union
+from typing import Union
+from sobrecargar import overload
+class Informe: ...
 
 class Informe:
     def __init__(
@@ -17,20 +19,10 @@ class Informe:
         self.bloqueNotasGeneral         : ListaNotas = bloqueNotasGeneral
         self.resumen                    : str = resumen
 
-    @overload
-    @classmethod
-    def desdeCSV(cls,archivo : str): ...
-    @overload
-    @classmethod
-    def desdeCSV(cls, fecha : date = date.today()): ...        
-    @classmethod
-    def desdeCSV(cls, parametro : Union[str | date]):
-        if isinstance(parametro, str):
-            ARCHIVO         : str = parametro 
-        elif isinstance(parametro,date):
-            FECHA           : str = parametro.strftime('%Y-%m-%d')
-            ARCHIVO         : str = f"Relevamiento_Medios_{FECHA}.csv"
-            
+
+    @staticmethod
+    def __desdeCSV(archivo : str):
+        ARCHIVO : str = archivo
         EXISTE_INFORME  : bool = esArchivo(f"./{ARCHIVO}")
         if not EXISTE_INFORME:
             nuevoInforme : Informe =  Informe()
@@ -70,6 +62,22 @@ class Informe:
 
             nuevoInforme.agregarLista(nuevaLista)
         return nuevoInforme
+
+
+    @overload
+    @classmethod
+    def desdeCSV(cls, fecha : date = date.today()):
+        FECHA           : str = fecha.strftime('%Y-%m-%d')
+        ARCHIVO         : str = f"Relevamiento_Medios_{FECHA}.csv"
+
+        return cls.__desdeCSV(ARCHIVO)
+
+    @overload
+    @classmethod
+    def desdeCSV(cls, nombreArchivo : str):
+        return cls.__desdeCSV(nombreArchivo)
+            
+        
 
     def __str__(self) -> str:
         return  f'{ f"ELECCIONES 2023. Informe de Medios."}\n\n'  \
