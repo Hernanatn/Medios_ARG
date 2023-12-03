@@ -40,9 +40,9 @@ def main():
     print(f"[DEBUG] Iniciado Relevo de Medios:{FECHA_HOY} | {HORA_AHORA}")
     
     RUTA_INFORME_HOY    : str = f"Relevamiento_Medios_{FECHA_HOY}.csv"
-    informeNuevo    : Informe = Informe.desdeCSV(RUTA_INFORME_HOY)
+    informeNuevo    : Informe = Informe.desdeCSV()
 
-    informeNuevo                                                                    \
+    informeNuevo                                                          \
         .agregarLista( listarNotas( listadorPerfil , miCategorizador ) )   \
         .agregarLista( listarNotas( listadorLPO    , miCategorizador ) )    \
         .agregarLista( listarNotas( listadorDestape, miCategorizador ) )     \
@@ -55,7 +55,7 @@ def main():
     informeNuevo.crearMensajeWPP()
     informeNuevo.crearCSV()
 
-    print(f"[DEBUG] Concluído Relevo de Medios :{FECHA_HOY} | {HORA_AHORA}")
+    print(f"[DEBUG] Concluído Relevo de Medios: {FECHA_HOY} | {HORA_AHORA}")
 
 
 if __name__ == "__main__":
